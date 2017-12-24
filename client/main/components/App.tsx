@@ -5,6 +5,7 @@ import * as React from 'react';
 import {
   Header,
   MainSection,
+  TypeaheadInput,
   model,
   addTodo,
   editTodo,
@@ -25,6 +26,13 @@ class App extends React.Component<AppProps> {
 
     return (
       <div className="todoapp">
+        <TypeaheadInput 
+          items={todos}
+          placeholder='type here'
+          rowsCount={5}
+          onSelect={(t: model.Todo) => dispatch(addTodo(
+            `from list: ${t.text}`
+          ))} />
         <Header addTodo={(text: string) => dispatch(addTodo(text))} />
         <MainSection
             todos={todos}
