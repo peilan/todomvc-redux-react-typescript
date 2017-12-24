@@ -1,20 +1,23 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { model } from '..'
 import './style.css'
 
+interface Model {
+  text: string
+}
+
 interface TypeaheadInputProps {
-  items: model.Todo[];
+  items: Model[];
   placeholder: string;
   rowsCount: number;
-  onSelect: (item: model.Todo) => void
+  onSelect: (item: Model) => void
 }
 
 interface TypeaheadInputState {
   text: string,
   isOpen: boolean,
-  highlighted: model.Todo,
-  filtered: model.Todo[]
+  highlighted: Model,
+  filtered: Model[]
 }
 
 class TypeaheadInput extends React.Component<TypeaheadInputProps, TypeaheadInputState> {
@@ -33,8 +36,8 @@ class TypeaheadInput extends React.Component<TypeaheadInputProps, TypeaheadInput
     this._ignoreBlur = false;
   }
 
-  getFiltered(items: model.Todo[], value = '') : model.Todo[] {
-    return items.filter((item: model.Todo) => {
+  getFiltered(items: Model[], value = '') : Model[] {
+    return items.filter((item: Model) => {
       const itemText = item.text.toLowerCase();
       const inputValue = value.toLowerCase();
       return itemText.indexOf(inputValue) !== -1;
@@ -100,13 +103,17 @@ class TypeaheadInput extends React.Component<TypeaheadInputProps, TypeaheadInput
         }
       },
       Enter: (currentIndex: number) => {
-        const { highlighted } = this.state;
+        const { highlighted, text } = this.state;
         this.setState({
+          text,
           highlighted,
-          text: highlighted.text,
           isOpen: false
         }, () => {
-          this.props.onSelect(highlighted);
+          if (!highlighted) {
+            this.props.onSelect({ text });
+          } else {
+            this.props.onSelect(highlighted);
+          }
         })
       }
     }
@@ -119,7 +126,7 @@ class TypeaheadInput extends React.Component<TypeaheadInputProps, TypeaheadInput
     }
   }
 
-  handleItemClick(item: model.Todo) : void {
+  handleItemClick(item: Model) : void {
     this.setState({
       text: item.text,
       isOpen: false
@@ -128,14 +135,14 @@ class TypeaheadInput extends React.Component<TypeaheadInputProps, TypeaheadInput
     })
   }
 
-  handleItemMouseEnter(item: model.Todo) : void {
+  handleItemMouseEnter(item: Model) : void {
     this._ignoreBlur = true;
     this.setState({
       highlighted: item
     })
   }
 
-  handleItemMouseLeave(item: model.Todo) : void {
+  handleItemMouseLeave(item: Model) : void {
     this._ignoreBlur = false;
   }
 
