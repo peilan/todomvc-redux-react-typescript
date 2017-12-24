@@ -11,9 +11,37 @@ import {
 } from './constants/ActionTypes';
 
 const initialState: IState = [<Todo>{
-  text: 'Use Redux with TypeScript',
+  text: 'todo mvc on react',
   completed: false,
   id: 0
+}, <Todo>{
+  text: 'todo mvc on angular',
+  completed: false,
+  id: 1
+}, <Todo>{
+  text: 'todo mvc on ember',
+  completed: false,
+  id: 2
+}, <Todo>{
+  text: 'todo mvc on vue',
+  completed: false,
+  id: 3
+}, <Todo>{
+  text: 'todo mvc on pure js',
+  completed: false,
+  id: 4
+}, <Todo>{
+  text: 'todo mvc on knockout',
+  completed: false,
+  id: 5
+}, <Todo>{
+  text: 'todo mvc on backbone',
+  completed: false,
+  id: 6
+}, <Todo>{
+  text: 'todo mvc on polymer',
+  completed: false,
+  id: 7
 }];
 
 export default handleActions<IState, Todo>({
