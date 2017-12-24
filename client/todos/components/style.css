@@ -1,0 +1,27 @@
+.typeahead {
+    background: '#fff'
+}
+
+.typeahead-list {
+    position: 'absolute';
+    z-index: 100;
+    width: 550px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+                0 25px 50px 0 rgba(0, 0, 0, 0.1)
+}
+
+.typeahead-list__hidden {
+    display: none;
+}
+
+.typeahead-item {
+    font-size: 24px;
+    padding: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.typeahead-item__highlighted {
+    background-color: #0097cf;
+    color: #fff;
+}
