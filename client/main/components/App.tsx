@@ -28,7 +28,7 @@ class App extends React.Component<AppProps> {
       <div className="todoapp">
         <TypeaheadInput 
           items={todos}
-          placeholder='type here'
+          placeholder='TypeaheadInput component'
           rowsCount={5}
           onSelect={(t: model.Todo) => dispatch(addTodo(
             `from list: ${t.text}`
